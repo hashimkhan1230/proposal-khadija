@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Khadija Aabdi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#fff7f9;
+      --bg2:#f6fbff;
+      --accent:#d96f91;
+      --muted:#7a6b72;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{
+      background: radial-gradient(1000px 600px at 10% 10%, #fff2f6 0%, transparent 10%),
+                  radial-gradient(800px 500px at 90% 90%, #f0fbff 0%, transparent 12%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;padding:32px;color:#3a2f33;
+    }
+
+    .card{
+      width:100%;max-width:760px;background:rgba(255,255,255,0.8);backdrop-filter:blur(6px);border-radius:20px;padding:44px;box-shadow:0 10px 30px rgba(50,40,50,0.08);position:relative;overflow:hidden;
+    }
+
+    .left{
+      display:flex;flex-direction:column;gap:22px;padding-right:24px;
+    }
+
+    h1{
+      font-family:'Great Vibes', cursive;font-size:56px;margin:0;color:var(--accent);letter-spacing:0.5px;
+    }
+    p.lead{font-size:18px;margin:0;color:var(--muted);line-height:1.5}
+
+    .message{
+      margin-top:8px;padding:18px 20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,245,248,0.6));border:1px solid rgba(217,111,145,0.12);
+    }
+
+    .btn-row{margin-top:18px;display:flex;gap:12px}
+    .btn{
+      padding:12px 18px;border-radius:999px;border:0;font-weight:600;cursor:pointer;font-size:15px;box-shadow:0 6px 18px rgba(100,70,90,0.06);
+    }
+    .btn-yes{background:linear-gradient(90deg,#ff8fb0,#d96f91);color:white}
+    .btn-more{background:transparent;border:1px solid rgba(60,40,50,0.06);color:var(--muted)}
+
+    .footer{margin-top:18px;font-size:13px;color:#a18690}
+
+    /* gentle floating heart animation */
+    .float-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .heart{
+      position:absolute;width:24px;height:24px;transform:translateY(0) scale(1);opacity:0.9;
+      animation:float 8s linear infinite;
+      filter:drop-shadow(0 6px 10px rgba(217,111,145,0.12));
+    }
+    .heart svg{width:100%;height:100%;display:block}
+
+    @keyframes float{
+      0%{transform:translateY(110%) scale(0.8);opacity:0}
+      10%{opacity:0.6}
+      50%{opacity:0.9}
+      100%{transform:translateY(-20%) scale(1.1);opacity:0}
+    }
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,14,16,0.45);opacity:0;pointer-events:none;transition:all 220ms ease}
+    .modal-backdrop.show{opacity:1;pointer-events:auto}
+    .modal{background:white;padding:28px;border-radius:14px;max-width:420px;width:92%;text-align:center;box-shadow:0 20px 50px rgba(20,14,16,0.25)}
+    .modal h2{margin:0;font-size:22px;color:#2b2024}
+    .modal p{color:var(--muted);margin-top:8px}
+
+    .celebrate{margin-top:16px;display:flex;gap:10px;align-items:center;justify-content:center}
+
+    /* confetti pieces */
+    .confetti-piece{width:8px;height:14px;opacity:0;position:relative;transform:translateY(-10px) rotate(10deg);}
+
+    /* responsive */
+    @media (max-width:720px){
+      .card{padding:28px}
+      h1{font-size:42px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="left">
+      <h1>For Khadija Aabdi</h1>
+      <p class="lead">There’s a little story I’ve been wanting to tell you — one that begins with a smile, a shy hello, and the warmth I feel whenever I think of you.</p>
+
+      <div class="message">
+        <p style="margin:0;">Khadija, every moment with you feels gentle and true. I made this page because some feelings are too soft to say out loud — will you make me the happiest person by being mine?</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-yes" id="openBtn">Will you be mine?</button>
+        <button class="btn btn-more" id="readMore">A little more...</button>
+      </div>
+
+      <div class="footer">— with all my heart, Hashim</div>
+    </div>
+
+    <div class="float-wrap" aria-hidden="true">
+      <!-- Several hearts with different positions and delays -->
+      <div class="heart" style="left:8%;animation-delay:0s;opacity:0.8"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9-7.25C-0.5 8.5 4.2 4 7.5 6.5 10 8.6 12 11 12 11s2-2.4 4.5-4.5C19.8 4 24.5 8.5 21 12.75 19 15.65 12 20 12 20z" fill="url(#g)"/></svg></div>
+      <div class="heart" style="left:24%;animation-delay:1.2s;opacity:0.7;transform:scale(0.9)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9-7.25C-0.5 8.5 4.2 4 7.5 6.5 10 8.6 12 11 12 11s2-2.4 4.5-4.5C19.8 4 24.5 8.5 21 12.75 19 15.65 12 20 12 20z" fill="url(#g)"/></svg></div>
+      <div class="heart" style="left:60%;animation-delay:2.3s;opacity:0.85;transform:scale(1.05)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9-7.25C-0.5 8.5 4.2 4 7.5 6.5 10 8.6 12 11 12 11s2-2.4 4.5-4.5C19.8 4 24.5 8.5 21 12.75 19 15.65 12 20 12 20z" fill="url(#g)"/></svg></div>
+      <div class="heart" style="left:78%;animation-delay:3.5s;opacity:0.7;transform:scale(0.95)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9-7.25C-0.5 8.5 4.2 4 7.5 6.5 10 8.6 12 11 12 11s2-2.4 4.5-4.5C19.8 4 24.5 8.5 21 12.75 19 15.65 12 20 12 20z" fill="url(#g)"/></svg></div>
+    </div>
+
+  </div>
+
+  <!-- modal -->
+  <div id="modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle">
+      <h2 id="modalTitle">Khadija — will you say yes?</h2>
+      <p>Say it with me 💕</p>
+
+      <div style="margin-top:14px;display:flex;gap:10px;justify-content:center">
+        <button class="btn btn-yes" id="yesBtn">Yes</button>
+        <button class="btn btn-more" id="noBtn">No</button>
+      </div>
+
+      <div class="celebrate" id="celebrateArea" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const modal = document.getElementById('modal');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const celebrateArea = document.getElementById('celebrateArea');
+    const readMore = document.getElementById('readMore');
+
+    openBtn.addEventListener('click', ()=>{
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
+    });
+
+    readMore.addEventListener('click', ()=>{
+      alert('Every little thing about you feels like a gentle song. I hope we can make many small happy memories together.');
+    });
+
+    // playful 'No' — it moves slightly when hovered
+    noBtn.addEventListener('mouseenter', ()=>{
+      const r = 90 + Math.random()*140;
+      noBtn.style.transform = `translateX(${Math.cos(r)*18}px) translateY(${Math.sin(r)*6}px)`;
+    });
+    noBtn.addEventListener('mouseleave', ()=>{ noBtn.style.transform = 'translateX(0)'; });
+
+    yesBtn.addEventListener('click', ()=>{
+      // show celebration
+      celebrate();
+      yesBtn.disabled = true;
+      yesBtn.textContent = 'You said yes! ❤️';
+      setTimeout(()=>{
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+      },2200);
+    });
+
+    // simple confetti hearts
+    function celebrate(){
+      for(let i=0;i<18;i++){
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.background = i%3===0? '#ffb3c7' : (i%3===1? '#ffd7e6' : '#d96f91');
+        el.style.transform = `translateY(0) rotate(${Math.random()*360}deg)`;
+        celebrateArea.appendChild(el);
+
+        // animate
+        const delay = i*40;
+        setTimeout(()=>{
+          el.style.transition = 'all 900ms cubic-bezier(.2,.9,.3,1)';
+          el.style.opacity = '1';
+          el.style.transform = `translateY(${ - (80 + Math.random()*160)}px) rotate(${Math.random()*720}deg)`;
+        },delay);
+
+        // remove
+        setTimeout(()=>{ el.remove(); }, 2200 + delay);
+      }
+    }
+
+    // accessibility: close modal on Esc
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+      }
+    });
+  </script>
+</body>
+</html>
