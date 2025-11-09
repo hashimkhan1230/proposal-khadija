@@ -1,104 +1,456 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>For Khadija Aabdi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg1:#fff7f9;--bg2:#f6fbff;--accent:#d96f91;--muted:#7a6b72;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{
-      background: radial-gradient(1000px 600px at 10% 10%, #fff2f6 0%, transparent 10%),
-                  radial-gradient(800px 500px at 90% 90%, #f0fbff 0%, transparent 12%),
-                  linear-gradient(180deg,var(--bg1),var(--bg2));
-      display:flex;align-items:center;justify-content:center;padding:32px;color:#3a2f33;
-    }
-    .card{width:100%;max-width:760px;background:rgba(255,255,255,0.8);backdrop-filter:blur(6px);border-radius:20px;
-          padding:44px;box-shadow:0 10px 30px rgba(50,40,50,0.08);position:relative;overflow:hidden;}
-    h1{font-family:'Great Vibes',cursive;font-size:56px;margin:0;color:var(--accent);}
-    p.lead{font-size:18px;margin:0;color:var(--muted);line-height:1.5}
-    .message{margin-top:8px;padding:18px 20px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,245,248,0.6));border:1px solid rgba(217,111,145,0.12);}
-    .btn-row{margin-top:18px;display:flex;gap:12px}
-    .btn{padding:12px 18px;border-radius:999px;border:0;font-weight:600;cursor:pointer;font-size:15px;box-shadow:0 6px 18px rgba(100,70,90,0.06);}
-    .btn-yes{background:linear-gradient(90deg,#ff8fb0,#d96f91);color:white}
-    .btn-more{background:transparent;border:1px solid rgba(60,40,50,0.06);color:var(--muted)}
-    .footer{margin-top:18px;font-size:13px;color:#a18690}
-    /* modal */
-    .modal-backdrop{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,14,16,0.45);opacity:0;pointer-events:none;transition:all 220ms ease}
-    .modal-backdrop.show{opacity:1;pointer-events:auto}
-    .modal{background:white;padding:28px;border-radius:14px;max-width:420px;width:92%;text-align:center;box-shadow:0 20px 50px rgba(20,14,16,0.25)}
-    .modal h2{margin:0;font-size:22px;color:#2b2024}
-    .modal p{color:var(--muted);margin-top:8px}
-    label{display:block;text-align:left;margin:10px 0 5px;color:#555}
-    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;font-family:inherit}
-    .send-btn{margin-top:10px;background:linear-gradient(90deg,#ff8fb0,#d96f91);color:white;border:none;padding:10px 0;border-radius:999px;width:100%;font-weight:600;cursor:pointer}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>For Khadija Aabdi — A Little Question</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --accent1: #ff9bb3;
+    --accent2: #d96f91;
+    --muted: #6b5960;
+    --bgA: #fff7fb;
+    --bgB: #f3fbff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+  body{
+    background: linear-gradient(120deg,var(--bgA),var(--bgB));
+    overflow-x:hidden;
+    display:flex;align-items:center;justify-content:center;padding:28px;
+    color:#2f2126;
+  }
+
+  /* animated gradient background pane */
+  .ambient {
+    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+    background: radial-gradient(600px 400px at 10% 20%, rgba(255,215,230,0.6), transparent 10%),
+                radial-gradient(500px 350px at 85% 80%, rgba(220,245,255,0.6), transparent 12%);
+    animation:ambientMove 16s linear infinite;
+    filter: blur(18px) saturate(1.05);
+  }
+  @keyframes ambientMove {
+    0%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(20px) rotate(2deg)}
+    100%{transform:translateY(0) rotate(0deg)}
+  }
+
+  .container{position:relative;z-index:2;max-width:920px;width:100%;display:flex;align-items:center;justify-content:center;padding:36px}
+  .card{
+    width:100%;max-width:820px;border-radius:22px;padding:36px 42px;background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,252,254,0.9));
+    box-shadow:0 20px 60px rgba(44,20,28,0.12);position:relative;overflow:hidden;
+    border:1px solid rgba(217,111,145,0.06);
+  }
+
+  header{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .title {
+    display:flex;flex-direction:column;align-items:flex-start;
+  }
+  h1{
+    margin:0;font-family:'Great Vibes',cursive;font-size:58px;color:var(--accent2);letter-spacing:0.6px;text-shadow:0 6px 18px rgba(217,111,145,0.08);
+  }
+  .sub{color:var(--muted);font-size:16px;margin-top:6px}
+
+  .poem{
+    margin-top:18px;padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,245,248,0.6), rgba(255,255,255,0.6));
+    border:1px solid rgba(217,111,145,0.08);font-size:15px;color:#4a3a3f;line-height:1.5;opacity:0;transform:translateY(12px);
+    transition:all 700ms cubic-bezier(.2,.9,.25,1);
+  }
+  .poem.show{opacity:1;transform:translateY(0)}
+
+  .message{margin-top:18px;font-size:16px;color:#4b3b40}
+
+  .controls{display:flex;gap:12px;margin-top:22px;align-items:center}
+  .btn{
+    padding:12px 18px;border-radius:999px;border:0;cursor:pointer;font-weight:700;letter-spacing:0.2px;font-size:15px;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow:0 8px 28px rgba(40,20,30,0.06);
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-yes{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;
+    box-shadow:0 14px 38px rgba(217,111,145,0.18);
+  }
+  .btn-yes.glow{animation:glow 2.4s infinite}
+  @keyframes glow{
+    0%{box-shadow:0 10px 30px rgba(217,111,145,0.10)}
+    50%{box-shadow:0 20px 60px rgba(217,111,145,0.22)}
+    100%{box-shadow:0 10px 30px rgba(217,111,145,0.10)}
+  }
+  .btn-more{background:transparent;border:1px solid rgba(220,200,210,0.35);color:var(--muted)}
+  .tiny{font-size:13px;color:#a18690;margin-top:12px}
+
+  /* modal */
+  .backdrop{position:fixed;inset:0;background:rgba(10,8,10,0.45);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .25s ease;z-index:10}
+  .backdrop.show{opacity:1;pointer-events:auto}
+  .modal{
+    width:96%;max-width:520px;border-radius:16px;padding:22px;background:linear-gradient(180deg,#ffffff,#fff8fb);box-shadow:0 40px 80px rgba(18,10,12,0.4);transform:translateY(10px);transition:transform .28s ease;
+  }
+  .backdrop.show .modal{transform:translateY(0)}
+
+  .modal h2{margin:0;font-family:'Great Vibes',cursive;color:var(--accent2);font-size:34px;text-align:center}
+  .modal p{color:var(--muted);text-align:center;margin:8px 0 12px}
+  .form-field{display:block;margin-top:10px}
+  input[type="email"], textarea{
+    width:100%;padding:12px;border-radius:10px;border:1px solid #efe7ea;font-size:14px;resize:none;font-family:inherit;
+  }
+  .row{display:flex;gap:8px;margin-top:12px}
+  .col{flex:1}
+  .submit-row{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:14px}
+  .submit-btn{flex:1;padding:12px;border-radius:999px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:700;cursor:pointer}
+  .ghost{background:transparent;border:1px solid rgba(200,160,170,0.25);color:var(--muted);padding:10px;border-radius:999px;cursor:pointer}
+
+  /* heart trail */
+  .trail { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:6; overflow:hidden; }
+
+  .heart-dot{position:absolute;font-size:18px;opacity:0;transform:scale(0.8);transition:all 600ms ease;filter:drop-shadow(0 6px 12px rgba(217,111,145,0.12));}
+
+  /* confetti canvas area (just absolute children) */
+  .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:8;overflow:hidden}
+
+  /* final overlay */
+  .final-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,248,250,0.96));opacity:0;pointer-events:none;transition:all .3s ease;z-index:12}
+  .final-overlay.show{opacity:1;pointer-events:auto}
+  .final-card{padding:28px;border-radius:18px;text-align:center;max-width:720px;box-shadow:0 40px 90px rgba(28,14,20,0.18);}
+
+  /* mobile tweaks */
+  @media (max-width:560px){
+    h1{font-size:44px}
+    .modal h2{font-size:28px}
+    .card{padding:28px}
+  }
+</style>
 </head>
 <body>
-  <div class="card">
-    <h1>For Khadija Aabdi</h1>
-    <p class="lead">There’s a little story I’ve been wanting to tell you — one that begins with a smile, a shy hello, and the warmth I feel whenever I think of you.</p>
 
-    <div class="message">
-      <p style="margin:0;">Khadija, every moment with you feels gentle and true. I made this page because some feelings are too soft to say out loud — will you make me the happiest person by being mine?</p>
+<div class="ambient" aria-hidden="true"></div>
+<div class="trail" id="trail"></div>
+<div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+<div class="container">
+  <div class="card" role="main" id="card">
+    <header>
+      <div class="title">
+        <h1>For Khadija Aabdi</h1>
+        <div class="sub">A small page with a big question — made with love by Hashim</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end">
+        <div style="font-size:13px;color:#b18591">💖 Premium Proposal</div>
+        <div style="margin-top:6px;font-size:12px;color:#b0959c">Open on a quiet moment</div>
+      </div>
+    </header>
+
+    <section class="poem" id="poem">
+      <em>"Your laughter is the sunrise I chase; your silence is the calm I keep — with you my little world feels complete."</em>
+    </section>
+
+    <p class="message" id="msg">Khadija, every moment with you feels gentle and true. I could write a thousand pages and still not find the right words — so I made this tiny place just for you.</p>
+
+    <div class="controls">
+      <button class="btn btn-yes glow" id="askBtn">Will you be mine?</button>
+      <button class="btn btn-more" id="readMoreBtn">Read a little more...</button>
     </div>
 
-    <div class="btn-row">
-      <button class="btn btn-yes" id="openBtn">Will you be mine?</button>
-      <button class="btn btn-more" id="readMore">A little more…</button>
-    </div>
-
-    <div class="footer">— with all my heart, Hashim</div>
+    <div class="tiny">— with all my heart, Hashim</div>
   </div>
+</div>
 
-  <!-- Modal with Form -->
-  <div id="modal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-labelledby="modalTitle">
-      <h2 id="modalTitle">Khadija — will you say yes?</h2>
-      <p>Please let me know your answer 💌</p>
+<!-- Modal (form & choice) -->
+<div class="backdrop" id="backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-labelledby="modalTitle">
+    <h2 id="modalTitle">Khadija — your answer</h2>
+    <p>Pick Yes/No and optionally send me a short message (it reaches my email)</p>
 
-      <form action="https://formspree.io/f/xwpaeaka" method="POST">
-        <input type="hidden" id="choiceField" name="choice" value="">
-        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:10px">
-          <button type="button" class="btn btn-yes" id="yesBtn">Yes 💖</button>
-          <button type="button" class="btn btn-more" id="noBtn">No 😔</button>
+    <form id="replyForm" action="https://formspree.io/f/xwpaeaka" method="POST">
+      <input type="hidden" name="choice" id="choiceField" value="">
+      <div class="form-field">
+        <input type="email" name="email" id="emailField" placeholder="Your email (optional)">
+      </div>
+      <div class="form-field">
+        <textarea name="message" rows="4" placeholder="Leave a message… (optional)"></textarea>
+      </div>
+
+      <div class="submit-row">
+        <div class="row" style="flex:1">
+          <button type="button" class="ghost" id="yesChoice">Yes 💖</button>
+          <button type="button" class="ghost" id="noChoice">No 😢</button>
         </div>
+        <button type="submit" class="submit-btn" id="sendResponse" style="display:none">Send Response</button>
+      </div>
+    </form>
 
-        <label>Your Email:</label>
-        <input type="email" name="email" required placeholder="you@example.com">
-
-        <label>Your Message:</label>
-        <textarea name="message" rows="3" placeholder="Write something sweet…"></textarea>
-
-        <button type="submit" class="send-btn">Send Response</button>
-      </form>
-    </div>
+    <div style="margin-top:10px;font-size:13px;color:#a18690">You can change your answer before sending. I’ll be grateful either way.</div>
   </div>
+</div>
 
-  <script>
-    const modal=document.getElementById('modal');
-    const openBtn=document.getElementById('openBtn');
-    const yesBtn=document.getElementById('yesBtn');
-    const noBtn=document.getElementById('noBtn');
-    const choiceField=document.getElementById('choiceField');
-    const readMore=document.getElementById('readMore');
+<!-- Final Overlay -->
+<div class="final-overlay" id="finalOverlay" aria-hidden="true">
+  <div class="final-card" id="finalCard">
+    <!-- content injected by JS -->
+  </div>
+</div>
 
-    openBtn.onclick=()=>{modal.classList.add('show');modal.setAttribute('aria-hidden','false');};
-    readMore.onclick=()=>alert('Every little thing about you feels like a gentle song. I hope we can make many small happy memories together.');
+<!-- Optional audio files: replace with your files in same folder -->
+<audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+<audio id="yesSound" src="yes-sound.mp3" preload="auto"></audio>
+<audio id="noSound" src="no-sound.mp3" preload="auto"></audio>
 
-    yesBtn.onclick=()=>{choiceField.value='Yes';yesBtn.textContent='Chosen ✔';};
-    noBtn.onclick=()=>{choiceField.value='No';noBtn.textContent='Chosen ❌';};
+<script>
+/* ---------- Helpers & Elements ---------- */
+const askBtn = document.getElementById('askBtn');
+const readMoreBtn = document.getElementById('readMoreBtn');
+const poem = document.getElementById('poem');
+const backdrop = document.getElementById('backdrop');
+const yesChoice = document.getElementById('yesChoice');
+const noChoice = document.getElementById('noChoice');
+const choiceField = document.getElementById('choiceField');
+const sendResponse = document.getElementById('sendResponse');
+const replyForm = document.getElementById('replyForm');
+const finalOverlay = document.getElementById('finalOverlay');
+const finalCard = document.getElementById('finalCard');
+const confettiLayer = document.getElementById('confettiLayer');
+const trail = document.getElementById('trail');
+const bgMusic = document.getElementById('bgMusic');
+const yesSound = document.getElementById('yesSound');
+const noSound = document.getElementById('noSound');
 
-    document.addEventListener('keydown',e=>{
-      if(e.key==='Escape'){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');}
+/* Autoplay music softly (try; browser may block, user may click to allow) */
+function tryPlayMusic(){
+  bgMusic.volume = 0.25;
+  bgMusic.play().catch(()=>{/* user interaction required */});
+}
+setTimeout(tryPlayMusic, 800);
+
+/* show poem after a delay with nice entrance */
+setTimeout(()=>poem.classList.add('show'), 900);
+
+/* open modal */
+askBtn.addEventListener('click', ()=>{
+  backdrop.classList.add('show');
+  backdrop.setAttribute('aria-hidden','false');
+});
+
+/* read more fade */
+readMoreBtn.addEventListener('click', ()=>{
+  poem.classList.toggle('show');
+  if(poem.classList.contains('show')) poem.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+/* choice handlers */
+yesChoice.addEventListener('click', ()=>{
+  choiceField.value = "Yes";
+  sendResponse.style.display = 'inline-block';
+  // immediate celebration UI
+  playYes();
+  // optional: auto-fill message (gentle)
+  replyForm.message && (replyForm.message.value = replyForm.message.value || "Yes — I would love to 💖");
+});
+noChoice.addEventListener('click', ()=>{
+  choiceField.value = "No";
+  sendResponse.style.display = 'inline-block';
+  playNo();
+  replyForm.message && (replyForm.message.value = replyForm.message.value || "I’m sorry — I can’t. I wish you all the best.");
+});
+
+/* form submission: show sending animation and final overlay */
+replyForm.addEventListener('submit', (e)=>{
+  // show small sending animation then let form submit normally (Formspree will handle redirect)
+  // We still allow default submit to proceed — but we'll show overlay and store response locally.
+  // store in localStorage
+  try{
+    const prev = JSON.parse(localStorage.getItem('proposal_responses') || '[]');
+    prev.push({choice: choiceField.value, email: replyForm.email && replyForm.email.value, message: replyForm.message && replyForm.message.value, time: new Date().toISOString()});
+    localStorage.setItem('proposal_responses', JSON.stringify(prev));
+  }catch(err){console.warn('save error', err);}
+
+  // show nice thank-you immediately (user will still be sent to Formspree result page or we can let it happen)
+  e.preventDefault(); // prevent default to show our overlay, then submit via fetch
+  sendResponse.disabled = true;
+  sendResponse.textContent = 'Sending…';
+  const data = new FormData(replyForm);
+
+  // POST to Formspree via fetch so we can remain on page and show our own overlay
+  fetch(replyForm.action, {method:'POST', body: data, headers: {'Accept': 'application/json'}})
+    .then(response => response.json().catch(()=>({ok:false})))
+    .then(json => {
+      // show final overlay
+      showFinal(choiceField.value);
+      // reset send button
+      sendResponse.textContent = 'Sent ✓';
+      sendResponse.disabled = true;
+    })
+    .catch(err => {
+      console.warn('submit error', err);
+      showFinal(choiceField.value, true);
+      sendResponse.textContent = 'Sent ✓';
+      sendResponse.disabled = true;
     });
-    window.onclick=e=>{
-      if(e.target===modal){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');}
-    };
-  </script>
+});
+
+/* close modal when clicking outside or pressing Esc */
+backdrop.addEventListener('click', (e)=>{
+  if(e.target === backdrop) closeBackdrop();
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeBackdrop();
+});
+function closeBackdrop(){
+  backdrop.classList.remove('show');
+  backdrop.setAttribute('aria-hidden','true');
+}
+
+/* ---------- Visual Effects ---------- */
+
+/* play yes: confetti + sound + floating hearttrail */
+function playYes(){
+  try{ yesSound.volume = 0.9; yesSound.currentTime = 0; yesSound.play().catch(()=>{});}catch(e){}
+  spawnConfetti(28);
+  spawnHearts(8);
+  pulseCard();
+}
+/* play no: sad sound + shake */
+function playNo(){
+  try{ noSound.volume = 0.9; noSound.currentTime = 0; noSound.play().catch(()=>{});}catch(e){}
+  shakeCard();
+  spawnTearEmojis();
+}
+
+/* card pulse when yes */
+function pulseCard(){
+  const card = document.getElementById('card');
+  card.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],{duration:800, easing:'ease-out'});
+}
+
+/* shake card for no */
+function shakeCard(){
+  const card = document.getElementById('card');
+  card.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:700});
+}
+
+/* confetti pieces */
+function spawnConfetti(count){
+  const colors = ['#ffd6e0','#ffb3c7','#ffd7e6','#d96f91'];
+  for(let i=0;i<count;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.style.position = 'absolute';
+    el.style.left = (10 + Math.random()*80) + '%';
+    el.style.top = '-10%';
+    el.style.width = (6 + Math.random()*10) + 'px';
+    el.style.height = (10 + Math.random()*18) + 'px';
+    el.style.background = colors[i%colors.length];
+    el.style.opacity = Math.random()*0.9+0.3;
+    el.style.borderRadius = '3px';
+    el.style.transform = `rotate(${Math.random()*360}deg)`;
+    confettiLayer.appendChild(el);
+    // animate
+    const toX = (Math.random()*120 - 40);
+    const dur = 1600 + Math.random()*1400;
+    el.animate([{transform:`translateY(0px) rotate(0deg)`},{transform:`translateY(${600 + Math.random()*200}px) rotate(${Math.random()*720}deg)`}],{duration:dur,easing:'cubic-bezier(.2,.9,.3,1)'});
+    setTimeout(()=>el.remove(), dur+40);
+  }
+}
+
+/* small floating hearts */
+function spawnHearts(n){
+  for(let i=0;i<n;i++){
+    const h = document.createElement('div');
+    h.className = 'heart-dot';
+    h.textContent = '💗';
+    h.style.left = (30 + Math.random()*40) + '%';
+    h.style.top = (50 + Math.random()*20) + '%';
+    h.style.opacity = 0;
+    trail.appendChild(h);
+    // animate up and fade
+    const dx = (Math.random()*120 - 60);
+    h.animate([
+      { transform:`translate(0px,0px) scale(.8)`, opacity:0 },
+      { transform:`translate(${dx}px, -120px) scale(1)`, opacity:1 },
+      { transform:`translate(${dx*1.2}px, -240px) scale(.9)`, opacity:0 }
+    ], { duration: 1800 + Math.random()*800, easing:'cubic-bezier(.2,.9,.3,1)'});
+    setTimeout(()=>h.remove(), 2200 + Math.random()*800);
+  }
+}
+
+/* sad emoji rain for No */
+function spawnTearEmojis(){
+  for(let i=0;i<10;i++){
+    const el = document.createElement('div');
+    el.textContent = '😢';
+    el.style.position = 'absolute';
+    el.style.left = (20 + Math.random()*60) + '%';
+    el.style.top = '-5%';
+    el.style.fontSize = (18 + Math.random()*14) + 'px';
+    el.style.opacity = 0.95;
+    confettiLayer.appendChild(el);
+    el.animate([{transform:'translateY(0)'},{transform:`translateY(${350 + Math.random()*200}px)`}],{duration:1300 + Math.random()*600, easing:'ease-in'});
+    setTimeout(()=>el.remove(), 1500 + Math.random()*700);
+  }
+}
+
+/* mouse heart trail */
+let lastTrailTime = 0;
+document.addEventListener('mousemove', (e)=>{
+  const now = Date.now();
+  if(now - lastTrailTime < 80) return; // limit dots
+  lastTrailTime = now;
+  const dot = document.createElement('div');
+  dot.className = 'heart-dot';
+  dot.textContent = ['💗','💞','💕'][Math.floor(Math.random()*3)];
+  dot.style.left = (e.clientX - 8) + 'px';
+  dot.style.top = (e.clientY - 8) + 'px';
+  dot.style.opacity = 1;
+  dot.style.fontSize = (10 + Math.random()*18) + 'px';
+  trail.appendChild(dot);
+  dot.animate([{transform:'translateY(0) scale(1)', opacity:1},{transform:'translateY(-48px) scale(.8)', opacity:0}],{duration:900, easing:'cubic-bezier(.2,.9,.3,1)'});
+  setTimeout(()=>dot.remove(), 1000);
+});
+
+/* show final overlay after successful send or immediate yes/no quick flow */
+function showFinal(choice, error=false){
+  finalOverlay.classList.add('show');
+  finalOverlay.setAttribute('aria-hidden','false');
+  if(choice === 'Yes'){
+    finalCard.innerHTML = `<h1 style="font-family:'Great Vibes',cursive;color:${getComputedStyle(document.documentElement).getPropertyValue('--accent2')};font-size:48px;margin:0">She said YES 💖</h1>
+    <p style="color:${getComputedStyle(document.documentElement).getPropertyValue('--muted')};margin-top:12px">Thank you, Khadija. Hashim's heart is full. ❤️</p>
+    <p style="margin-top:14px;color:#8a6a6f">You can close this window when you're ready.</p>`;
+    spawnConfetti(40);
+    try{ yesSound.play().catch(()=>{}); }catch(e){}
+  } else if(choice === 'No'){
+    finalCard.innerHTML = `<h1 style="font-family:'Great Vibes',cursive;color:#9c7b85;font-size:42px;margin:0">It's okay — thank you</h1>
+    <p style="color:${getComputedStyle(document.documentElement).getPropertyValue('--muted')};margin-top:12px">I respect your feelings, Khadija. Wishing you happiness always.</p>`;
+    spawnTearEmojis();
+    try{ noSound.play().catch(()=>{}); }catch(e){}
+  } else {
+    finalCard.innerHTML = `<h1 style="font-family:'Great Vibes',cursive;color:${getComputedStyle(document.documentElement).getPropertyValue('--accent2')};font-size:42px;margin:0">Thanks for responding</h1>
+    <p style="color:${getComputedStyle(document.documentElement).getPropertyValue('--muted')};margin-top:12px">Your message is saved. — Hashim</p>`;
+  }
+
+  // close overlay on click or esc
+  finalOverlay.addEventListener('click', ()=> {
+    finalOverlay.classList.remove('show');
+    finalOverlay.setAttribute('aria-hidden','true');
+  }, { once: true });
+  document.addEventListener('keydown', function onesc(e){
+    if(e.key === 'Escape'){ finalOverlay.classList.remove('show'); finalOverlay.setAttribute('aria-hidden','true'); document.removeEventListener('keydown', onesc); }
+  });
+}
+
+/* Utility: try to enable sound on first interaction if blocked */
+document.body.addEventListener('click', function unlockAudio(){
+  try{ bgMusic.play().catch(()=>{}); }catch(e){}
+  document.body.removeEventListener('click', unlockAudio);
+});
+
+/* Optionally show stored responses in console for debugging */
+console.log('Previously saved replies:', localStorage.getItem('proposal_responses'));
+
+/* End script */
+</script>
+
 </body>
 </html>
